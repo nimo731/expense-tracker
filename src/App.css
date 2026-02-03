@@ -6,9 +6,9 @@
   --background: #f8fafc;
   --text-primary: #1e293b;
   --text-secondary: #64748b;
-  --glass: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --glass: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
   --success: #10b981;
   --destructive: #ef4444;
 }
@@ -20,106 +20,82 @@
 }
 
 body {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Outfit', -apple-system, sans-serif;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
   color: var(--text-primary);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   overflow-x: hidden;
 }
 
 .App {
   width: 100%;
   max-width: 1100px;
-  margin: 10px;
-  padding: 20px;
+  margin: 0 auto;
+  padding: 15px;
+  /* Compact on Mobile */
   background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  min-height: 100vh;
   box-shadow: var(--shadow);
-  animation: fadeIn 0.8s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  margin-bottom: 25px;
-  background: linear-gradient(to right, #4f46e5, #ec4899);
+  margin: 10px 0 20px;
+  background: linear-gradient(to right, #4f46e5, #9333ea);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
-  letter-spacing: -0.025em;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
-/* Period Toggle */
+/* Toggles */
 .period-toggle {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 6px;
+  margin-bottom: 5px;
 }
 
 .toggle-btn {
   flex: 1;
-  max-width: 150px;
+  max-width: 140px;
   background: white;
-  color: var(--text-secondary);
   border: 1px solid #e2e8f0;
-  padding: 10px 12px;
-  font-size: 0.85rem;
+  padding: 8px 10px;
+  font-size: 0.8rem;
   font-weight: 700;
   border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toggle-btn.active {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
-  transform: translateY(-1px);
 }
 
-/* Stats Section */
+/* Stats */
 .stats-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 5px;
+  gap: 10px;
 }
 
 .stat-card {
   background: white;
-  padding: 16px;
+  padding: 12px;
   border-radius: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
   text-align: center;
   border-left: 4px solid transparent;
-  transition: transform 0.2s ease;
 }
 
 .stat-card.income {
@@ -135,15 +111,14 @@ h1 {
 }
 
 .stat-label {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
+  font-size: 0.65rem;
   text-transform: uppercase;
   font-weight: 700;
-  margin-bottom: 4px;
+  color: var(--text-secondary);
 }
 
 .stat-value {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 800;
 }
 
@@ -163,210 +138,233 @@ h1 {
 .form-section {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 15px;
 }
 
 .income-form,
 .expense-form {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  width: 100%;
+  padding: 15px;
+  border-radius: 16px;
 }
 
 .form-section h2,
 .calendar-view h2,
-.expense-table-container h2 {
-  font-size: 1.1rem;
+.expense-tracker-list h2 {
+  font-size: 1rem;
+  margin-bottom: 12px;
   font-weight: 700;
-  margin-bottom: 15px;
-  color: var(--text-primary);
 }
 
 .form-group {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .form-group label {
-  display: block;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--text-secondary);
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  display: block;
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #f1f5f9;
+  padding: 10px;
+  border: 1.5px solid #f1f5f9;
   border-radius: 10px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  transition: border-color 0.2s;
+  font-size: 0.9rem;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-/* Calendar View */
+/* Calendar */
 .calendar-view {
   background: white;
-  padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  padding: 10px;
+  border-radius: 16px;
 }
 
 .react-calendar {
   width: 100% !important;
   border: none !important;
-  font-family: inherit !important;
+  font-size: 0.8rem !important;
 }
 
 .react-calendar__tile {
   padding: 10px 2px !important;
-  font-size: 0.85rem;
-}
-
-.calendar-dots {
-  display: flex;
-  justify-content: center;
-  gap: 2px;
-  margin-top: 2px;
-}
-
-.dot {
-  width: 4px;
-  height: 4px;
 }
 
 /* Analytics */
 .analytics-section {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 15px;
 }
 
 .chart-container {
   background: white;
-  padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  min-height: 320px;
+  padding: 10px;
+  border-radius: 16px;
+  min-height: 280px;
 }
 
 .chart-container h3 {
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
   text-align: center;
   color: var(--text-secondary);
+  margin-bottom: 5px;
 }
 
-/* Transaction Table */
-.expense-table-container {
+/* Transaction History (Table vs Charts) */
+.desktop-only {
+  display: none;
+}
+
+.mobile-only {
+  display: block;
+}
+
+.transaction-card {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  padding: 12px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  position: relative;
 }
 
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-.expense-table {
-  width: 100%;
-  min-width: 600px;
-  /* Force scroll on small screens */
-  border-collapse: separate;
-  border-spacing: 0 8px;
-}
-
-.expense-table th {
-  padding: 10px;
-  text-align: left;
+.card-date {
   font-size: 0.7rem;
-  text-transform: uppercase;
   color: var(--text-secondary);
-  border-bottom: 1px solid #f1f5f9;
+  font-weight: 600;
 }
 
-.expense-table td {
-  padding: 12px 10px;
-  background: #f8fafc;
-  font-size: 0.85rem;
-}
-
-.expense-table tr td:first-child {
-  border-radius: 10px 0 0 10px;
-}
-
-.expense-table tr td:last-child {
-  border-radius: 0 10px 10px 0;
-}
-
-.category-tag {
-  padding: 3px 8px;
-  border-radius: 20px;
-  font-size: 0.65rem;
+.card-category-tag {
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  color: var(--primary);
   font-weight: 700;
 }
 
-/* Responsive Overrides (Tablet & Desktop) */
-@media (min-width: 768px) {
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-amount {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.card-delete-btn {
+  width: 100%;
+  padding: 8px;
+  background: #fee2e2;
+  color: var(--destructive);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 8px;
+}
+
+.no-data-msg {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 20px;
+  font-size: 0.85rem;
+}
+
+/* Responsive Overrides */
+@media (min-width: 641px) {
   .App {
-    margin: 40px auto;
-    padding: 40px;
+    padding: 30px;
+    margin: 20px auto;
+    min-height: auto;
+    border-radius: 24px;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .stats-container {
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .stat-value {
-    font-size: 1.5rem;
+    gap: 15px;
   }
 
   .form-section {
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
   }
 
   .analytics-section {
     grid-template-columns: 1fr 1fr;
   }
 
-  .calendar-view {
-    padding: 30px;
+  .desktop-only {
+    display: block;
   }
 
-  .react-calendar__tile {
-    padding: 1.5em 0.5em !important;
+  .mobile-only {
+    display: none;
+  }
+
+  .expense-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
+
+  .expense-table td {
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 0;
+  }
+
+  .expense-table tr td:first-child {
+    border-radius: 12px 0 0 12px;
+  }
+
+  .expense-table tr td:last-child {
+    border-radius: 0 12px 12px 0;
   }
 }
 
-/* Animations & Interactions */
+@media (min-width: 1024px) {
+  .App {
+    padding: 40px;
+  }
+
+  .stats-container {
+    gap: 20px;
+  }
+}
+
 button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 700;
+  transition: all 0.2s;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
 }
 
 .btn-primary {
@@ -378,19 +376,15 @@ button {
   transform: scale(0.98);
 }
 
-.delete-btn {
-  width: auto;
-  padding: 8px;
+.export-btn {
+  background: #f1f5f9;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  max-width: 180px;
+  margin: 0 auto;
 }
 
 .footer-actions {
-  margin-top: 10px;
   text-align: center;
-}
-
-.export-btn {
-  background: white;
-  color: var(--text-secondary);
-  border: 1px solid #e2e8f0;
-  max-width: 200px;
+  margin-top: 10px;
 }
