@@ -40,12 +40,20 @@ const ExpenseForm = ({ onAddExpense }) => {
       </div>
       <div className="form-group">
         <label>Category</label>
-        <input
-          type="text"
+        <select
           value={expense.category}
           onChange={(e) => setExpense({ ...expense, category: e.target.value })}
           required
-        />
+        >
+          <option value="">Select Category</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Utilities">Utilities</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Health">Health</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
       <button type="submit">Add Expense</button>
     </form>

@@ -8,7 +8,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const addExpense = (newExpense) => {
-    setExpenses([...expenses, newExpense]);
+    setExpenses([...expenses, { ...newExpense, id: Date.now() }]);
   };
 
   const handleSearch = (term) => {
@@ -20,16 +20,31 @@ function App() {
     (expense.category?.toLowerCase() || '').includes(searchTerm)
   );
 
-  const deleteExpense = (index) => {
-    const updatedExpenses = expenses.filter((_, i) => i !== index);
+  const deleteExpense = (id) => {
+    const updatedExpenses = expenses.filter(expense => expense.id !== id);
     setExpenses(updatedExpenses);
   };
+
+  const totalExpense = expenses.reduce((acc, curr) => acc + curr.amount, 0);
+  const transactionCount = expenses.length;
 
   return (
     <div className="App">
       <h1>Expense Tracker</h1>
       <div className="container">
+        <div className="stats-container">
+          <div className="stat-card">
+            <div className="stat-label">Total Balance</div>
+            <div className="stat-value">KSh {totalExpense.toFixed(2)}</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-label">Transactions</div>
+            <div className="stat-value">{transactionCount}</div>
+          </div>
+        </div>
+
         <ExpenseForm onAddExpense={addExpense} />
+
         <ExpenseTable
           expenses={filteredExpenses}
           onSearch={handleSearch}
