@@ -1,13 +1,45 @@
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary: #ec4899;
+  --accent: #8b5cf6;
+  --background: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --glass: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --success: #10b981;
+  --destructive: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
+
 .App {
   width: 100%;
-  max-width: 1000px;
-  margin: 20px;
-  padding: 40px;
+  max-width: 1100px;
+  margin: 10px;
+  padding: 20px;
   background: var(--glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
   animation: fadeIn 0.8s ease-out;
 }
@@ -25,68 +57,69 @@
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 30px;
-  background: linear-gradient(to right, var(--primary), var(--secondary));
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  background: linear-gradient(to right, #4f46e5, #ec4899);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+  letter-spacing: -0.025em;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 /* Period Toggle */
 .period-toggle {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .toggle-btn {
+  flex: 1;
+  max-width: 150px;
   background: white;
   color: var(--text-secondary);
-  border: 2px solid #f1f5f9;
-  padding: 8px 20px;
-  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toggle-btn.active {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+  transform: translateY(-1px);
 }
 
 /* Stats Section */
 .stats-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  margin-bottom: 10px;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 5px;
 }
 
 .stat-card {
   background: white;
-  padding: 20px;
+  padding: 16px;
   border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
   text-align: center;
-  transition: transform 0.3s ease;
   border-left: 4px solid transparent;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
+  transition: transform 0.2s ease;
 }
 
 .stat-card.income {
@@ -102,16 +135,16 @@ h1 {
 }
 
 .stat-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .stat-value {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
 }
 
 .stat-value.income {
@@ -129,62 +162,64 @@ h1 {
 /* Forms */
 .form-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .income-form,
 .expense-form {
   background: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  width: 100%;
 }
 
-.form-section h2 {
+.form-section h2,
+.calendar-view h2,
+.expense-table-container h2 {
   font-size: 1.1rem;
-  margin-bottom: 5px;
+  font-weight: 700;
+  margin-bottom: 15px;
   color: var(--text-primary);
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  margin-bottom: 12px;
 }
 
 .form-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--text-secondary);
+  margin-bottom: 5px;
 }
 
 .form-group input,
 .form-group select {
-  padding: 10px 14px;
+  width: 100%;
+  padding: 12px;
   border: 2px solid #f1f5f9;
   border-radius: 10px;
   font-family: inherit;
   font-size: 0.95rem;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s;
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 /* Calendar View */
 .calendar-view {
   background: white;
-  padding: 25px;
+  padding: 15px;
   border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .react-calendar {
@@ -193,148 +228,145 @@ h1 {
   font-family: inherit !important;
 }
 
-.react-calendar__navigation button {
-  min-width: 44px;
-  background: none;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-.react-calendar__month-view__weekdays {
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-
 .react-calendar__tile {
-  padding: 1.5em 0.5em !important;
-  border-radius: 10px;
-}
-
-.react-calendar__tile--now {
-  background: #f1f5f9 !important;
-}
-
-.react-calendar__tile--active {
-  background: var(--primary) !important;
-  color: white !important;
-}
-
-.calendar-day-content {
-  position: relative;
-  height: 100%;
+  padding: 10px 2px !important;
+  font-size: 0.85rem;
 }
 
 .calendar-dots {
   display: flex;
   justify-content: center;
-  gap: 3px;
-  margin-top: 4px;
+  gap: 2px;
+  margin-top: 2px;
 }
 
 .dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-}
-
-.dot.income {
-  background: var(--success);
-}
-
-.dot.expense {
-  background: var(--destructive);
+  width: 4px;
+  height: 4px;
 }
 
 /* Analytics */
 .analytics-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .chart-container {
   background: white;
-  padding: 25px;
+  padding: 15px;
   border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  min-height: 400px;
+  min-height: 320px;
 }
 
 .chart-container h3 {
-  font-size: 1rem;
-  margin-bottom: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
   text-align: center;
   color: var(--text-secondary);
 }
 
-/* Table */
+/* Transaction Table */
 .expense-table-container {
   background: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.table-responsive {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .expense-table {
   width: 100%;
+  min-width: 600px;
+  /* Force scroll on small screens */
   border-collapse: separate;
   border-spacing: 0 8px;
 }
 
 .expense-table th {
-  padding: 12px;
+  padding: 10px;
   text-align: left;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   color: var(--text-secondary);
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .expense-table td {
-  padding: 14px;
+  padding: 12px 10px;
   background: #f8fafc;
+  font-size: 0.85rem;
 }
 
 .expense-table tr td:first-child {
-  border-radius: 12px 0 0 12px;
+  border-radius: 10px 0 0 10px;
 }
 
 .expense-table tr td:last-child {
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .category-tag {
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 20px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  background: rgba(79, 70, 229, 0.1);
-  color: var(--primary);
 }
 
-.income-tag {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--success);
+/* Responsive Overrides (Tablet & Desktop) */
+@media (min-width: 768px) {
+  .App {
+    margin: 40px auto;
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .form-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .analytics-section {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calendar-view {
+    padding: 30px;
+  }
+
+  .react-calendar__tile {
+    padding: 1.5em 0.5em !important;
+  }
 }
 
-.expense-tag {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--destructive);
-}
-
-/* Buttons */
+/* Animations & Interactions */
 button {
-  padding: 10px 18px;
+  width: 100%;
+  padding: 12px;
   border-radius: 10px;
   border: none;
-  font-family: inherit;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary {
@@ -342,34 +374,23 @@ button {
   color: white;
 }
 
-.btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
 .delete-btn {
-  background: #fee2e2;
-  color: var(--destructive);
+  width: auto;
   padding: 8px;
-  border-radius: 8px;
 }
 
 .footer-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
+  text-align: center;
 }
 
-@media (max-width: 640px) {
-  .App {
-    padding: 20px;
-    margin: 10px;
-  }
-
-  .form-section,
-  .analytics-section {
-    grid-template-columns: 1fr;
-  }
+.export-btn {
+  background: white;
+  color: var(--text-secondary);
+  border: 1px solid #e2e8f0;
+  max-width: 200px;
 }
