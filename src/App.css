@@ -26,19 +26,22 @@ body {
   min-height: 100vh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .App {
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: 100%;
+  /* Default mobile */
+  margin: 0;
   padding: 15px;
-  /* Compact on Mobile */
   background: var(--glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   min-height: 100vh;
   box-shadow: var(--shadow);
+  transition: max-width 0.3s ease, padding 0.3s ease;
 }
 
 h1 {
@@ -294,30 +297,57 @@ h1 {
   font-size: 0.85rem;
 }
 
-/* Responsive Overrides */
-@media (min-width: 641px) {
+/* Responsive Overrides (Laptops & Desktops) */
+@media (min-width: 769px) {
   .App {
-    padding: 30px;
+    max-width: 1400px;
+    /* Wider for Laptops */
     margin: 20px auto;
+    padding: 2.5vw;
+    border-radius: 30px;
     min-height: auto;
-    border-radius: 24px;
   }
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
   }
 
   .stats-container {
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 20px;
+  }
+
+  .stat-card {
+    padding: 25px;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
   }
 
   .form-section {
     grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .income-form,
+  .expense-form {
+    padding: 25px;
   }
 
   .analytics-section {
     grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .chart-container {
+    padding: 25px;
+    min-height: 400px;
   }
 
   .desktop-only {
@@ -331,36 +361,73 @@ h1 {
   .expense-table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 8px;
+    border-spacing: 0 10px;
   }
 
   .expense-table td {
-    padding: 14px;
+    padding: 18px;
     background: #f8fafc;
-    border-radius: 0;
   }
 
   .expense-table tr td:first-child {
-    border-radius: 12px 0 0 12px;
+    border-radius: 15px 0 0 15px;
   }
 
   .expense-table tr td:last-child {
-    border-radius: 0 12px 12px 0;
+    border-radius: 0 15px 15px 0;
+  }
+
+  .calendar-view {
+    padding: 25px;
+  }
+
+  .react-calendar {
+    font-size: 1rem !important;
   }
 }
 
-@media (min-width: 1024px) {
+/* Ultra-Wide Optimization */
+@media (min-width: 1600px) {
   .App {
-    padding: 40px;
+    padding: 3vw 5vw;
   }
+}
 
-  .stats-container {
-    gap: 20px;
-  }
+/* Footer Actions (Buttons) */
+.footer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.export-btn {
+  flex: 0 1 auto;
+  min-width: 150px;
+  padding: 12px 20px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.export-btn:hover {
+  background: #f8fafc;
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 button {
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   border: none;
   font-family: inherit;
@@ -370,21 +437,11 @@ button {
 .btn-primary {
   background: var(--primary);
   color: white;
+  border-radius: 12px;
+  width: 100%;
+  padding: 12px;
 }
 
 .btn-primary:active {
   transform: scale(0.98);
-}
-
-.export-btn {
-  background: #f1f5f9;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  max-width: 180px;
-  margin: 0 auto;
-}
-
-.footer-actions {
-  text-align: center;
-  margin-top: 10px;
 }
