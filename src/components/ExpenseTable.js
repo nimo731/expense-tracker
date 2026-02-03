@@ -8,6 +8,7 @@ const ExpenseTable = ({ expenses, onSearch, onDelete }) => {
       <table className="expense-table">
         <thead>
           <tr>
+            <th>Date</th>
             <th>Description</th>
             <th>Amount</th>
             <th>Category</th>
@@ -17,11 +18,12 @@ const ExpenseTable = ({ expenses, onSearch, onDelete }) => {
         <tbody>
           {expenses.length === 0 ? (
             <tr>
-              <td colSpan="4">No expenses found. Add some!</td>
+              <td colSpan="5">No expenses found for this period.</td>
             </tr>
           ) : (
             expenses.map((expense) => (
               <tr key={expense.id}>
+                <td>{expense.date}</td>
                 <td>{expense.description}</td>
                 <td className="amount-cell">KSh {typeof expense.amount === 'number' ? expense.amount.toFixed(2) : expense.amount}</td>
                 <td><span className="category-tag">{expense.category}</span></td>

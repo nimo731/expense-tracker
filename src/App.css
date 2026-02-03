@@ -1,6 +1,6 @@
 .App {
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 20px;
   padding: 40px;
   background: var(--glass);
@@ -41,11 +41,37 @@ h1 {
   gap: 30px;
 }
 
+/* Period Toggle */
+.period-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toggle-btn {
+  background: white;
+  color: var(--text-secondary);
+  border: 2px solid #f1f5f9;
+  padding: 8px 20px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
 /* Stats Section */
 .stats-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
   margin-bottom: 10px;
 }
 
@@ -56,14 +82,27 @@ h1 {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   text-align: center;
   transition: transform 0.3s ease;
+  border-left: 4px solid transparent;
 }
 
 .stat-card:hover {
   transform: translateY(-5px);
 }
 
+.stat-card.income {
+  border-left-color: var(--success);
+}
+
+.stat-card.expense {
+  border-left-color: var(--destructive);
+}
+
+.stat-card.balance {
+  border-left-color: var(--accent);
+}
+
 .stat-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -73,39 +112,63 @@ h1 {
 .stat-value {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary);
 }
 
-/* Form Styling */
-.expense-form {
+.stat-value.income {
+  color: var(--success);
+}
+
+.stat-value.expense {
+  color: var(--destructive);
+}
+
+.stat-value.balance {
+  color: var(--accent);
+}
+
+/* Forms */
+.form-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+}
+
+.income-form,
+.expense-form {
   background: white;
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-section h2 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: var(--text-primary);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 
 .form-group label {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
 
 .form-group input,
 .form-group select {
-  padding: 12px 16px;
+  padding: 10px 14px;
   border: 2px solid #f1f5f9;
-  border-radius: 12px;
+  border-radius: 10px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.2s ease;
 }
 
@@ -113,48 +176,107 @@ h1 {
 .form-group select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-.expense-form button {
-  grid-column: 1 / -1;
-  padding: 14px;
-  font-weight: 600;
+/* Calendar View */
+.calendar-view {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  font-family: inherit !important;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
   font-size: 1rem;
-  letter-spacing: 0.025em;
+  font-weight: 600;
+  color: var(--primary);
 }
 
-/* Table Styling */
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.react-calendar__tile {
+  padding: 1.5em 0.5em !important;
+  border-radius: 10px;
+}
+
+.react-calendar__tile--now {
+  background: #f1f5f9 !important;
+}
+
+.react-calendar__tile--active {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+.calendar-day-content {
+  position: relative;
+  height: 100%;
+}
+
+.calendar-dots {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.dot.income {
+  background: var(--success);
+}
+
+.dot.expense {
+  background: var(--destructive);
+}
+
+/* Analytics */
+.analytics-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.chart-container {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  min-height: 400px;
+}
+
+.chart-container h3 {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* Table */
 .expense-table-container {
   background: white;
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-.search-bar {
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 12px 16px 12px 45px;
-  border: 2px solid #f1f5f9;
-  border-radius: 12px;
-  font-family: inherit;
-  background: #f8fafc;
-}
-
-.search-bar::before {
-  content: '🔍';
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1rem;
-  opacity: 0.5;
+  overflow-x: auto;
 }
 
 .expense-table {
@@ -164,20 +286,17 @@ h1 {
 }
 
 .expense-table th {
-  padding: 12px 16px;
+  padding: 12px;
   text-align: left;
-  font-weight: 600;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--text-secondary);
   border-bottom: 2px solid #f1f5f9;
 }
 
 .expense-table td {
-  padding: 16px;
+  padding: 14px;
   background: #f8fafc;
-  transition: all 0.2s ease;
 }
 
 .expense-table tr td:first-child {
@@ -188,63 +307,59 @@ h1 {
   border-radius: 0 12px 12px 0;
 }
 
-.expense-table tr:hover td {
-  background: #f1f5f9;
-  transform: scale(1.005);
-}
-
-.amount-cell {
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
 .category-tag {
-  display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
   background: rgba(79, 70, 229, 0.1);
   color: var(--primary);
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
 }
 
+.income-tag {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.expense-tag {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--destructive);
+}
+
+/* Buttons */
 button {
-  padding: 10px 20px;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 10px;
   border: none;
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.btn-primary {
   background: var(--primary);
   color: white;
 }
 
-button:hover {
+.btn-primary:hover {
   background: var(--primary-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
-}
-
-button:active {
-  transform: translateY(0);
 }
 
 .delete-btn {
   background: #fee2e2;
   color: var(--destructive);
   padding: 8px;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 8px;
 }
 
-.delete-btn:hover {
-  background: var(--destructive);
-  color: white;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+.footer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 @media (max-width: 640px) {
@@ -253,7 +368,8 @@ button:active {
     margin: 10px;
   }
 
-  .expense-form {
+  .form-section,
+  .analytics-section {
     grid-template-columns: 1fr;
   }
 }
